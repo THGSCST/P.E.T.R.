@@ -1,4 +1,5 @@
-﻿using PETR_Robot;
+﻿using Newtonsoft.Json.Linq;
+using PETR_Robot;
 using System.Diagnostics;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -26,8 +27,11 @@ if (true)
         string circlePETR4 = b3QuotePETR4.Item2 < 0 ? Emoji.redCircle : Emoji.greenCircle;
         string circlePETR3 = b3QuotePETR3.Item2 < 0 ? Emoji.redCircle : Emoji.greenCircle;
 
-        string message = String.Format("{0}PETR4: {1} {2}% {3}PETR3: {4} {5}%\n{5} com delay 15 min",
-            circlePETR4, b3QuotePETR4.Item1, b3QuotePETR4.Item2, circlePETR3, b3QuotePETR3.Item1, b3QuotePETR3.Item2, DateTime.Now);
+        string b3PETR4Percent = string.Format("{0:0.0}%", b3QuotePETR4.Item2);
+        string b3PETR3Percent = string.Format("{0:0.0}%", b3QuotePETR3.Item2);
+
+        string message = String.Format("{0}PETR4: {1} {2}% {3}PETR3: {4} {5}%\n └ {5} com delay 15 min",
+            circlePETR4, b3QuotePETR4.Item1, b3PETR4Percent, circlePETR3, b3QuotePETR3.Item1, b3PETR3Percent, DateTime.Now.ToString());
 
         var B3PetrQuoteMessage = await bot.EditMessageTextAsync(chatID, fixedMessageID, message);
     }
@@ -37,4 +41,4 @@ runTime.Stop();
 string finishMessage = "PETR-Robot finish! Total run time is: " + runTime.Elapsed.ToString();
 Console.WriteLine(finishMessage);
 if (showLogMessage)
-    await bot.SendTextMessageAsync(chatID, finishMessage);
+    await bot.SendTextMessageAsync(chatID, "https://br.investing.com/news/economic-indicators/calendario-economico-investidores-estarao-atentos-a-inflacao-no-brasil-e-nos-eua-1218646");
