@@ -19,8 +19,8 @@ jobs:
 
     - name: Download Artifact
       uses: actions/download-artifact@v4
-            with:
-            github-token: ${{ secrets.GH_PAT }} # Use seu PAT como secret
+      with:
+            github-token: ${{ secrets.GH_PAT }}
 
     - name: Run Application
       run: dotnet ./bin/PETR-Robot.dll
