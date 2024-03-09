@@ -1,0 +1,25 @@
+name: Run
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Download Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: bin
+
+    - name: Run Application
+      run: dotnet ./bin/PETR-Robot.dll
