@@ -22,7 +22,7 @@ jobs:
       with:
             name: bin
             github-token: ${{ secrets.GH_PAT }}
-            run-id: 8215339637
+            run-id: 8215692743
 
     - name: Run Application
       run: dotnet ./bin/PETR-Robot.dll
