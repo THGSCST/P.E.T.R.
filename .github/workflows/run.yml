@@ -25,4 +25,4 @@ jobs:
             run-id: 8215692743
 
     - name: Run Application
-      run: dotnet ./bin/PETR-Robot.dll
+      run: dotnet /home/runner/work/P.E.T.R./P.E.T.R./PETR-Robot.dll
