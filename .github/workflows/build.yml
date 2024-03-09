@@ -25,10 +25,4 @@ jobs:
       run: dotnet build --no-restore -c Release
 
     - name: Publish
-      run: dotnet publish --no-restore -c Release -o ./publish
-
-    - name: Upload Executable as Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: bin
-        path: ./publish/
+      run: dotnet publish --no-restore -c Release -o bin
