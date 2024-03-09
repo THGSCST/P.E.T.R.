@@ -26,3 +26,8 @@ jobs:
 
     - name: Run Application
       run: dotnet /home/runner/work/P.E.T.R./P.E.T.R./PETR-Robot.dll
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        GROUP_CHAT_ID: ${{ secrets.GROUP_CHAT_ID }}
+        FIXED_MESSAGE_ID: ${{ secrets.FIXED_MESSAGE_ID }}
+        SHOW_LOG_MESSAGE: ${{ secrets.SHOW_LOG_MESSAGE }}
