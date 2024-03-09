@@ -53,32 +53,5 @@ namespace PETR_Robot
                 }
             }
         }
-        public static async Task<(double, double)> GetMFinanceQuote(string ticker)
-        {
-            string url = $"https://mfinance.com.br/api/v1/stocks/{ticker}";
-            using (var httpClient = new HttpClient())
-            {
-                try
-                {
-                    var response = await httpClient.GetStringAsync(url);
-                    var jObject = JObject.Parse(response);
-                    double closingPrice = jObject["lastPrice"].Value<double>();
-                    double change = jObject["change"].Value<double>();
-                    return (closingPrice, change);
-                }
-                catch (HttpRequestException httpEx)
-                {
-                    // Handle HTTP errors here (e.g., 404 Not Found)
-                    Console.WriteLine($"HTTP Request error: {httpEx.Message}");
-                    throw;
-                }
-                catch (Exception ex)
-                {
-                    // Handle other errors here (e.g., parsing errors)
-                    Console.WriteLine($"An error occurred: {ex.Message}");
-                    throw;
-                }
-            }
-        }
     }
 }

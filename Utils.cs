@@ -29,5 +29,10 @@ namespace PETR_Robot
                 throw new InvalidOperationException($"{name} deve ser do tipo {typeof(T).Name} válido.");
             }
         }
+
+        public static string[] GetEnvironmentStringArray(string name)
+        {
+            return GetEnvironmentVariable<string>(name).Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+        }
     }
 }
