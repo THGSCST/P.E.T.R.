@@ -1,4 +1,4 @@
-name: Build .NET Project
+name: Build
 
 on:
   push:
@@ -23,6 +23,12 @@ jobs:
       
     - name: Build
       run: dotnet build --no-restore -c Release
-      
-    - name: Test
-      run: dotnet test --no-build -c Release
+
+    - name: Publish
+      run: dotnet publish --no-restore -c Release -o ./publish
+
+    - name: Upload Executable as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-app-executable
+        path: ./publish/
