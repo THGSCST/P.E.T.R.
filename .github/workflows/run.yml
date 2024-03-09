@@ -21,6 +21,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: bin
+        path: ./publish/
 
     - name: Run Application
       run: dotnet ./bin/PETR-Robot.dll
