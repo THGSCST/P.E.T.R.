@@ -1,0 +1,33 @@
+name: Run
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Download Artifact
+      uses: actions/download-artifact@v4
+      with:
+            name: bin
+            github-token: ${{ secrets.GH_PAT }}
+            run-id: 8215692743
+
+    - name: Run Application
+      run: dotnet /home/runner/work/P.E.T.R./P.E.T.R./PETR-Robot.dll
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        GROUP_CHAT_ID: ${{ secrets.GROUP_CHAT_ID }}
+        FIXED_MESSAGE_ID: ${{ secrets.FIXED_MESSAGE_ID }}
+        SHOW_LOG_MESSAGE: ${{ secrets.SHOW_LOG_MESSAGE }}
